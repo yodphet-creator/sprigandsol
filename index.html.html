@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SprigAndSol — Botanical Wall Art Prints</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #F5F0E8;
+    --cream-dark: #EDE7DA;
+    --ink: #2C2416;
+    --ink-light: #6B5F4E;
+    --olive: #7A8C5E;
+    --olive-light: #A8B890;
+    --terracotta: #C4785A;
+    --white: #FDFCF9;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Jost', sans-serif;
+    background: var(--white);
+    color: var(--ink);
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 4rem;
+    background: rgba(253,252,249,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(44,36,22,0.08);
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .nav-logo span {
+    color: var(--olive);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--ink); }
+
+  .nav-cta {
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.6rem 1.4rem;
+    border: 1px solid var(--ink);
+    color: var(--ink);
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .nav-cta:hover {
+    background: var(--ink);
+    color: var(--white);
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: var(--cream);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 5rem;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5rem 4rem 5rem 6rem;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--olive);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 5vw, 5.5rem);
+    font-weight: 300;
+    line-height: 1.05;
+    color: var(--ink);
+    margin-bottom: 1.8rem;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--olive);
+  }
+
+  .hero-sub {
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: var(--ink-light);
+    max-width: 36ch;
+    margin-bottom: 3rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .btn-primary {
+    padding: 0.85rem 2rem;
+    background: var(--ink);
+    color: var(--white);
+    text-decoration: none;
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    transition: background 0.2s;
+  }
+
+  .btn-primary:hover { background: var(--olive); }
+
+  .btn-ghost {
+    padding: 0.85rem 2rem;
+    border: 1px solid var(--ink-light);
+    color: var(--ink-light);
+    text-decoration: none;
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    transition: all 0.2s;
+  }
+
+  .btn-ghost:hover {
+    border-color: var(--ink);
+    color: var(--ink);
+  }
+
+  .hero-right {
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Botanical illustration SVG panels */
+  .hero-art-grid {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 2px;
+    padding: 5rem 3rem 0 2rem;
+  }
+
+  .art-panel {
+    background: var(--cream-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .art-panel svg {
+    width: 70%;
+    height: 70%;
+    opacity: 0.85;
+  }
+
+  .art-panel:nth-child(1) { grid-column: 1; grid-row: 1 / 3; background: #EAE3D5; }
+  .art-panel:nth-child(2) { grid-column: 2; grid-row: 1; }
+  .art-panel:nth-child(3) { grid-column: 2; grid-row: 2; }
+
+  /* MARQUEE */
+  .marquee-bar {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 0.9rem 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .marquee-track {
+    display: inline-flex;
+    animation: marquee 22s linear infinite;
+  }
+
+  .marquee-item {
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 0 3rem;
+  }
+
+  .marquee-dot {
+    color: var(--olive-light);
+  }
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* SECTION COMMON */
+  section {
+    padding: 7rem 6rem;
+  }
+
+  .section-eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--olive);
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 3.5vw, 3.2rem);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+  }
+
+  /* COLLECTION — SPANISH */
+  .collection-section {
+    background: var(--white);
+  }
+
+  .collection-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 4rem;
+  }
+
+  .collection-header-left { max-width: 50ch; }
+
+  .collection-desc {
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: var(--ink-light);
+  }
+
+  .collection-link {
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 2px;
+    white-space: nowrap;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .collection-link:hover {
+    color: var(--olive);
+    border-color: var(--olive);
+  }
+
+  /* Product grid */
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .product-card {
+    cursor: pointer;
+    group: true;
+  }
+
+  .product-image {
+    background: var(--cream);
+    aspect-ratio: 3/4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin-bottom: 1rem;
+    position: relative;
+  }
+
+  .product-image svg {
+    width: 60%;
+    height: 60%;
+    transition: transform 0.4s ease;
+  }
+
+  .product-card:hover .product-image svg {
+    transform: scale(1.04);
+  }
+
+  .product-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 0.25rem;
+  }
+
+  .product-latin {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.85rem;
+    font-style: italic;
+    color: var(--ink-light);
+    margin-bottom: 0.5rem;
+  }
+
+  .product-tag {
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--olive);
+  }
+
+  /* COMING SOON */
+  .coming-section {
+    background: var(--cream);
+  }
+
+  .coming-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    margin-top: 4rem;
+    border: 1px solid rgba(44,36,22,0.1);
+  }
+
+  .coming-card {
+    background: var(--white);
+    padding: 2.5rem 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+  }
+
+  .coming-card:hover { background: var(--cream-dark); }
+
+  .coming-card-flag {
+    font-size: 2.5rem;
+    margin-bottom: 1.25rem;
+    display: block;
+  }
+
+  .coming-card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+  }
+
+  .coming-card-desc {
+    font-size: 0.85rem;
+    line-height: 1.65;
+    color: var(--ink-light);
+    margin-bottom: 1.25rem;
+  }
+
+  .coming-badge {
+    display: inline-block;
+    font-size: 0.68rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.75rem;
+    border: 1px solid var(--olive-light);
+    color: var(--olive);
+  }
+
+  .coming-card-subjects {
+    margin-top: 1rem;
+    font-size: 0.8rem;
+    color: var(--ink-light);
+    font-style: italic;
+    font-family: 'Cormorant Garamond', serif;
+    line-height: 1.8;
+  }
+
+  /* ABOUT */
+  .about-section {
+    background: var(--white);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+    padding: 7rem 6rem;
+  }
+
+  .about-visual {
+    background: var(--cream);
+    aspect-ratio: 4/5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .about-visual-inner {
+    width: 70%;
+    height: 70%;
+    border: 1px solid rgba(44,36,22,0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+
+  .about-visual svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .about-tag {
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+    background: var(--ink);
+    color: var(--cream);
+    font-size: 0.68rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding: 0.5rem 1rem;
+  }
+
+  .about-body {
+    font-size: 0.95rem;
+    line-height: 1.85;
+    color: var(--ink-light);
+    margin-bottom: 1.5rem;
+  }
+
+  .about-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-top: 2.5rem;
+  }
+
+  .about-detail-item {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid rgba(44,36,22,0.08);
+  }
+
+  .about-detail-item:last-child { border-bottom: none; }
+
+  .detail-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    color: var(--olive);
+    line-height: 1;
+    min-width: 2rem;
+  }
+
+  .detail-text {
+    font-size: 0.85rem;
+    line-height: 1.65;
+    color: var(--ink-light);
+  }
+
+  .detail-text strong {
+    display: block;
+    color: var(--ink);
+    font-weight: 400;
+    margin-bottom: 0.2rem;
+    font-size: 0.9rem;
+  }
+
+  /* CTA BANNER */
+  .cta-section {
+    background: var(--ink);
+    padding: 6rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4rem;
+  }
+
+  .cta-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 3.5vw, 3.5rem);
+    font-weight: 300;
+    color: var(--cream);
+    line-height: 1.1;
+    max-width: 20ch;
+  }
+
+  .cta-title em {
+    font-style: italic;
+    color: var(--olive-light);
+  }
+
+  .cta-right {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    min-width: 280px;
+  }
+
+  .cta-body {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: rgba(245,240,232,0.65);
+    max-width: 36ch;
+  }
+
+  .btn-cream {
+    display: inline-block;
+    padding: 0.9rem 2.2rem;
+    background: var(--cream);
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    transition: background 0.2s;
+    align-self: flex-start;
+  }
+
+  .btn-cream:hover { background: var(--olive-light); }
+
+  /* FOOTER */
+  footer {
+    background: var(--cream-dark);
+    padding: 3rem 6rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid rgba(44,36,22,0.1);
+  }
+
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    color: var(--ink);
+  }
+
+  .footer-logo span { color: var(--olive); }
+
+  .footer-tagline {
+    font-size: 0.78rem;
+    color: var(--ink-light);
+    letter-spacing: 0.08em;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .footer-links a {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--ink); }
+
+  .footer-copy {
+    font-size: 0.72rem;
+    color: var(--ink-light);
+    opacity: 0.6;
+  }
+
+  /* DIVIDER */
+  .divider {
+    width: 3rem;
+    height: 1px;
+    background: var(--olive);
+    margin: 1.5rem 0;
+  }
+
+  /* Scroll reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* HAMBURGER */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+    background: none;
+    border: none;
+  }
+  .hamburger span {
+    display: block;
+    width: 22px;
+    height: 1.5px;
+    background: var(--ink);
+    transition: all 0.3s;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: var(--cream);
+    z-index: 99;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 300;
+    color: var(--ink);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+  }
+  .mobile-menu a:hover { color: var(--olive); }
+  .mobile-menu .mobile-etsy {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 0.85rem 2rem;
+    background: var(--ink);
+    color: var(--white);
+    margin-top: 1rem;
+  }
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .nav-cta { display: none; }
+    .hamburger { display: flex; }
+
+    /* HERO */
+    .hero {
+      grid-template-columns: 1fr;
+      min-height: auto;
+      padding-top: 4rem;
+    }
+    .hero-left {
+      padding: 3rem 1.5rem 2.5rem;
+    }
+    .hero-title { font-size: clamp(2.4rem, 10vw, 3.5rem); }
+    .hero-sub { max-width: 100%; }
+    .hero-actions { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+    .btn-primary, .btn-ghost { width: 100%; text-align: center; padding: 1rem; }
+    .hero-right { height: 65vw; min-height: 260px; }
+    .hero-art-grid { padding: 1rem 1rem 0; }
+
+    /* SECTIONS */
+    section { padding: 3.5rem 1.5rem; }
+
+    /* COLLECTION */
+    .collection-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.25rem;
+      margin-bottom: 2.5rem;
+    }
+    .product-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .product-label { font-size: 1rem; }
+    .product-latin { font-size: 0.78rem; }
+
+    /* COMING SOON */
+    .coming-grid { grid-template-columns: 1fr 1fr; gap: 1px; }
+    .coming-card { padding: 1.75rem 1.25rem; }
+    .coming-card-flag { font-size: 2rem; }
+    .coming-card-title { font-size: 1.2rem; }
+
+    /* ABOUT */
+    .about-section {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+      padding: 3.5rem 1.5rem;
+    }
+    .about-visual { aspect-ratio: 1/1; max-width: 280px; margin: 0 auto; }
+
+    /* CTA */
+    .cta-section {
+      flex-direction: column;
+      padding: 3.5rem 1.5rem;
+      gap: 2rem;
+    }
+    .cta-title { font-size: clamp(1.8rem, 7vw, 2.5rem); }
+    .cta-right { min-width: unset; }
+    .btn-cream { width: 100%; text-align: center; }
+
+    /* FOOTER */
+    footer {
+      flex-direction: column;
+      gap: 1.5rem;
+      text-align: center;
+      padding: 2rem 1.5rem;
+    }
+    .footer-links { flex-wrap: wrap; justify-content: center; gap: 1rem; }
+  }
+
+  @media (max-width: 480px) {
+    .product-grid { grid-template-columns: 1fr; }
+    .coming-grid { grid-template-columns: 1fr; }
+    .hero-right { height: 80vw; }
+    .hero-title { font-size: clamp(2rem, 11vw, 3rem); }
+    nav { padding: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Sprig<span>&</span>Sol</a>
+  <ul class="nav-links">
+    <li><a href="#collection">Collection</a></li>
+    <li><a href="#coming">Coming Soon</a></li>
+    <li><a href="#about">About</a></li>
+  </ul>
+  <a href="https://www.etsy.com/shop/SprigAndSol" target="_blank" class="nav-cta">Shop on Etsy</a>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#collection" class="mobile-link">Collection</a>
+  <a href="#coming" class="mobile-link">Coming Soon</a>
+  <a href="#about" class="mobile-link">About</a>
+  <a href="https://www.etsy.com/shop/SprigAndSol" target="_blank" class="mobile-etsy">Shop on Etsy</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Botanical Wall Art · Digital Prints</p>
+    <h1 class="hero-title">The pantry,<br><em>painted</em><br>by hand.</h1>
+    <p class="hero-sub">Watercolor botanical prints inspired by the ingredients of the world's great kitchens. Spanish, French, Italian, Japanese — each collection a quiet study in where food comes from.</p>
+    <div class="hero-actions">
+      <a href="https://www.etsy.com/shop/SprigAndSol" target="_blank" class="btn-primary">Shop the Collection</a>
+      <a href="#collection" class="btn-ghost">See the Prints</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-art-grid">
+      <!-- Large olive panel -->
+      <div class="art-panel">
+        <svg viewBox="0 0 200 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Olive branch -->
+          <line x1="100" y1="310" x2="100" y2="60" stroke="#9E8B6A" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="100" y1="200" x2="60" y2="160" stroke="#9E8B6A" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="100" y1="160" x2="148" y2="120" stroke="#9E8B6A" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="100" y1="240" x2="55" y2="210" stroke="#9E8B6A" stroke-width="1.5" stroke-linecap="round"/>
+          <!-- Leaves -->
+          <ellipse cx="48" cy="152" rx="22" ry="8" transform="rotate(-40 48 152)" fill="#7A8C5E" opacity="0.75"/>
+          <ellipse cx="155" cy="112" rx="22" ry="8" transform="rotate(30 155 112)" fill="#6B7D50" opacity="0.8"/>
+          <ellipse cx="42" cy="205" rx="20" ry="7" transform="rotate(-35 42 205)" fill="#8A9C6A" opacity="0.7"/>
+          <ellipse cx="100" cy="120" rx="20" ry="7" transform="rotate(10 100 120)" fill="#7A8C5E" opacity="0.65"/>
+          <ellipse cx="75" cy="90" rx="18" ry="6" transform="rotate(-20 75 90)" fill="#6B7D50" opacity="0.7"/>
+          <ellipse cx="128" cy="80" rx="18" ry="6" transform="rotate(25 128 80)" fill="#8A9C6A" opacity="0.65"/>
+          <!-- Olives -->
+          <ellipse cx="90" cy="175" rx="10" ry="13" fill="#4A5E38" opacity="0.85"/>
+          <ellipse cx="112" cy="168" rx="9" ry="12" fill="#3D5030" opacity="0.9"/>
+          <ellipse cx="95" cy="148" rx="8" ry="11" fill="#556642" opacity="0.8"/>
+        </svg>
+        <div style="position:absolute;bottom:1rem;left:1rem;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:0.75rem;color:#6B5F4E;opacity:0.7;">Olea europaea</div>
+      </div>
+      <!-- Fig panel -->
+      <div class="art-panel">
+        <svg viewBox="0 0 160 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="78" cy="110" rx="42" ry="52" fill="#5A3D6B" opacity="0.72"/>
+          <ellipse cx="78" cy="110" rx="35" ry="44" fill="#6B4A7A" opacity="0.5"/>
+          <ellipse cx="88" cy="90" rx="8" ry="10" fill="#8A6A9A" opacity="0.3"/>
+          <rect x="75" y="58" width="6" height="22" rx="3" fill="#7A6A4A" opacity="0.8"/>
+          <ellipse cx="78" cy="58" rx="5" ry="4" fill="#5A7A40" opacity="0.7"/>
+        </svg>
+      </div>
+      <!-- Garlic panel -->
+      <div class="art-panel">
+        <svg viewBox="0 0 160 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="80" cy="110" rx="45" ry="50" fill="#C8B0C8" opacity="0.5"/>
+          <ellipse cx="80" cy="110" rx="38" ry="43" fill="#B090B8" opacity="0.45"/>
+          <!-- Clove lines -->
+          <line x1="68" y1="70" x2="68" y2="148" stroke="#9A80A0" stroke-width="1" opacity="0.5"/>
+          <line x1="80" y1="65" x2="80" y2="150" stroke="#9A80A0" stroke-width="1" opacity="0.5"/>
+          <line x1="92" y1="70" x2="92" y2="148" stroke="#9A80A0" stroke-width="1" opacity="0.5"/>
+          <!-- Stem -->
+          <line x1="80" y1="62" x2="80" y2="40" stroke="#BBA880" stroke-width="3" stroke-linecap="round"/>
+          <!-- Loose clove -->
+          <ellipse cx="42" cy="148" rx="12" ry="16" transform="rotate(20 42 148)" fill="#C8B0C8" opacity="0.6"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-bar">
+  <div class="marquee-track">
+    <span class="marquee-item">Spanish Pantry <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Instant Digital Download <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Hand-Painted Watercolor <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Print at Home <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Botanical Wall Art <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Mediterranean Kitchen <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">300 DPI · 6 Sizes Included <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Spanish Pantry <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Instant Digital Download <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Hand-Painted Watercolor <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Print at Home <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Botanical Wall Art <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Mediterranean Kitchen <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">300 DPI · 6 Sizes Included <span class="marquee-dot">✦</span></span>
+  </div>
+</div>
+
+<!-- SPANISH COLLECTION -->
+<section class="collection-section" id="collection">
+  <div class="collection-header reveal">
+    <div class="collection-header-left">
+      <p class="section-eyebrow">Now Available</p>
+      <h2 class="section-title">The Spanish<br>Pantry Collection</h2>
+      <p class="collection-desc">Ten sets of three prints, each capturing a cornerstone ingredient of the Spanish kitchen. Rendered in soft translucent watercolor on warm cream — made to live on the wall above your counter.</p>
+    </div>
+    <a href="https://www.etsy.com/shop/SprigAndSol" target="_blank" class="collection-link">View all on Etsy →</a>
+  </div>
+
+  <div class="product-grid">
+    <!-- Set 1 -->
+    <div class="product-card reveal">
+      <div class="product-image">
+        <svg viewBox="0 0 180 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="90" cy="140" rx="52" ry="58" fill="#C8B0C8" opacity="0.45"/>
+          <ellipse cx="90" cy="140" rx="44" ry="50" fill="#B090B8" opacity="0.4"/>
+          <line x1="78" y1="98" x2="78" y2="178" stroke="#9A80A0" stroke-width="1" opacity="0.4"/>
+          <line x1="90" y1="93" x2="90" y2="180" stroke="#9A80A0" stroke-width="1" opacity="0.4"/>
+          <line x1="102" y1="98" x2="102" y2="178" stroke="#9A80A0" stroke-width="1" opacity="0.4"/>
+          <line x1="90" y1="90" x2="90" y2="62" stroke="#BBA880" stroke-width="3.5" stroke-linecap="round"/>
+          <ellipse cx="54" cy="178" rx="13" ry="17" transform="rotate(20 54 178)" fill="#C8B0C8" opacity="0.55"/>
+        </svg>
+      </div>
+      <p class="product-label">The Andalusian Pantry</p>
+      <p class="product-latin">Garlic · Fig · Olive Branch</p>
+      <p class="product-tag">Set of 3 · Instant Download</p>
+    </div>
+
+    <!-- Set 2 -->
+    <div class="product-card reveal">
+      <div class="product-image">
+        <svg viewBox="0 0 180 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="95" cy="138" r="52" fill="#E8A830" opacity="0.55"/>
+          <circle cx="95" cy="138" r="42" fill="#F0BC50" opacity="0.45"/>
+          <circle cx="95" cy="138" r="28" fill="#F5D070" opacity="0.3"/>
+          <ellipse cx="72" cy="92" rx="18" ry="8" transform="rotate(-15 72 92)" fill="#6B8A50" opacity="0.65"/>
+          <ellipse cx="112" cy="86" rx="16" ry="7" transform="rotate(10 112 86)" fill="#5A7A40" opacity="0.6"/>
+          <rect x="92" y="80" width="5" height="18" rx="2.5" fill="#8A7A5A" opacity="0.7"/>
+        </svg>
+      </div>
+      <p class="product-label">The Citrus Orchard</p>
+      <p class="product-latin">Lemon · Valencia Orange · Seville Orange</p>
+      <p class="product-tag">Set of 3 · Instant Download</p>
+    </div>
+
+    <!-- Set 3 -->
+    <div class="product-card reveal">
+      <div class="product-image">
+        <svg viewBox="0 0 180 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="90" y1="220" x2="90" y2="50" stroke="#9E8B6A" stroke-width="2" stroke-linecap="round"/>
+          <line x1="90" y1="140" x2="50" y2="110" stroke="#9E8B6A" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="90" y1="110" x2="135" y2="80" stroke="#9E8B6A" stroke-width="1.5" stroke-linecap="round"/>
+          <ellipse cx="38" cy="103" rx="20" ry="6" transform="rotate(-35 38 103)" fill="#7A8C5E" opacity="0.7"/>
+          <ellipse cx="142" cy="73" rx="20" ry="6" transform="rotate(25 142 73)" fill="#6B7D50" opacity="0.75"/>
+          <ellipse cx="68" cy="75" rx="18" ry="6" transform="rotate(-15 68 75)" fill="#8A9C6A" opacity="0.6"/>
+          <ellipse cx="115" cy="55" rx="16" ry="6" transform="rotate(20 115 55)" fill="#7A8C5E" opacity="0.65"/>
+        </svg>
+      </div>
+      <p class="product-label">The Iberian Herb Garden</p>
+      <p class="product-latin">Rosemary · Thyme · Wild Oregano</p>
+      <p class="product-tag">Set of 3 · Instant Download</p>
+    </div>
+
+    <!-- Set 4 -->
+    <div class="product-card reveal">
+      <div class="product-image">
+        <svg viewBox="0 0 180 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="90" cy="120" r="50" fill="#C83040" opacity="0.5"/>
+          <circle cx="90" cy="120" r="40" fill="#D84050" opacity="0.4"/>
+          <!-- seeds suggestion -->
+          <circle cx="80" cy="115" r="4" fill="#A02030" opacity="0.5"/>
+          <circle cx="92" cy="108" r="3.5" fill="#A02030" opacity="0.45"/>
+          <circle cx="100" cy="118" r="4" fill="#A02030" opacity="0.5"/>
+          <circle cx="85" cy="128" r="3.5" fill="#A02030" opacity="0.45"/>
+          <circle cx="97" cy="130" r="4" fill="#A02030" opacity="0.5"/>
+          <!-- crown -->
+          <path d="M72 72 L80 60 L90 70 L100 58 L108 70 L116 60" stroke="#8A6A30" stroke-width="2" fill="none" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <p class="product-label">The Mediterranean Orchard</p>
+      <p class="product-latin">Pomegranate · Green Almonds · Quince</p>
+      <p class="product-tag">Set of 3 · Instant Download</p>
+    </div>
+
+    <!-- Set 5 -->
+    <div class="product-card reveal">
+      <div class="product-image">
+        <svg viewBox="0 0 180 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="70" cy="140" rx="20" ry="42" transform="rotate(-10 70 140)" fill="#C83020" opacity="0.6"/>
+          <ellipse cx="90" cy="130" rx="18" ry="38" fill="#D84030" opacity="0.55"/>
+          <ellipse cx="110" cy="145" rx="20" ry="40" transform="rotate(8 110 145)" fill="#C03028" opacity="0.6"/>
+          <ellipse cx="90" cy="108" rx="22" ry="8" fill="#E05040" opacity="0.35"/>
+        </svg>
+      </div>
+      <p class="product-label">The Heirloom Mercado</p>
+      <p class="product-latin">Piquillo · Spanish Onion · Heirloom Tomato</p>
+      <p class="product-tag">Set of 3 · Instant Download</p>
+    </div>
+
+    <!-- Set 6 -->
+    <div class="product-card reveal">
+      <div class="product-image">
+        <svg viewBox="0 0 180 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="90" y1="60" x2="90" y2="100" stroke="#9E8B6A" stroke-width="2.5" stroke-linecap="round"/>
+          <ellipse cx="76" cy="118" rx="13" ry="17" fill="#5A3A7A" opacity="0.7"/>
+          <ellipse cx="92" cy="128" rx="12" ry="16" fill="#4A2A6A" opacity="0.75"/>
+          <ellipse cx="106" cy="115" rx="13" ry="17" fill="#6A4A8A" opacity="0.65"/>
+          <ellipse cx="80" cy="145" rx="12" ry="16" fill="#4A2A6A" opacity="0.7"/>
+          <ellipse cx="100" cy="148" rx="11" ry="15" fill="#5A3A7A" opacity="0.65"/>
+          <ellipse cx="72" cy="105" rx="15" ry="5" transform="rotate(-20 72 105)" fill="#6A8A50" opacity="0.6"/>
+          <ellipse cx="112" cy="100" rx="14" ry="5" transform="rotate(15 112 100)" fill="#5A7A40" opacity="0.6"/>
+        </svg>
+      </div>
+      <p class="product-label">The Vineyard & Tapas</p>
+      <p class="product-latin">Tempranillo · Capers · Green Grapes</p>
+      <p class="product-tag">Set of 3 · Instant Download</p>
+    </div>
+  </div>
+
+  <div style="text-align:center;margin-top:3rem;" class="reveal">
+    <a href="https://www.etsy.com/shop/SprigAndSol" target="_blank" class="btn-primary">View All 10 Sets on Etsy</a>
+  </div>
+</section>
+
+<!-- COMING SOON -->
+<section class="coming-section" id="coming">
+  <div class="reveal">
+    <p class="section-eyebrow">Expanding Soon</p>
+    <h2 class="section-title">More kitchens.<br>More collections.</h2>
+    <div class="divider"></div>
+    <p style="font-size:0.95rem;line-height:1.75;color:var(--ink-light);max-width:52ch;">The Spanish Pantry is just the beginning. Each new collection brings a different kitchen tradition to your walls — same watercolor language, new world of ingredients.</p>
+  </div>
+
+  <div class="coming-grid">
+    <div class="coming-card reveal">
+      <span class="coming-card-flag">🇫🇷</span>
+      <h3 class="coming-card-title">French Provençal</h3>
+      <p class="coming-card-desc">Lavender, herbes de Provence, black truffle, champagne grapes — the quiet luxury of the French countryside kitchen.</p>
+      <span class="coming-badge">Coming Soon</span>
+      <p class="coming-card-subjects">Lavender · Black Truffle · Herbes de Provence · Champagne Grape · Tarragon · Cornichon</p>
+    </div>
+
+    <div class="coming-card reveal">
+      <span class="coming-card-flag">🇮🇹</span>
+      <h3 class="coming-card-title">Italian Cucina</h3>
+      <p class="coming-card-desc">San Marzano tomatoes, basil, porcini, lemons from Amalfi — the pantry of the world's most beloved cuisine.</p>
+      <span class="coming-badge">Coming Soon</span>
+      <p class="coming-card-subjects">San Marzano · Basil · Porcini · Amalfi Lemon · Fennel · Artichoke</p>
+    </div>
+
+    <div class="coming-card reveal">
+      <span class="coming-card-flag">🇯🇵</span>
+      <h3 class="coming-card-title">Japanese Kitchen</h3>
+      <p class="coming-card-desc">Yuzu, matcha, shiso, shiitake — the restrained elegance of Japanese pantry ingredients, rendered in spare watercolor.</p>
+      <span class="coming-badge">Coming Soon</span>
+      <p class="coming-card-subjects">Yuzu · Matcha · Shiso · Shiitake · Sansho · Lotus Root</p>
+    </div>
+
+    <div class="coming-card reveal">
+      <span class="coming-card-flag">🌿</span>
+      <h3 class="coming-card-title">More Regions</h3>
+      <p class="coming-card-desc">Greek, Moroccan, American, Canadian — new kitchen traditions added each season. Follow the shop to be notified first.</p>
+      <span class="coming-badge">In Planning</span>
+      <p class="coming-card-subjects">Greek · Moroccan · American · Canadian · Mexican · Thai</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<div class="about-section" id="about">
+  <div class="about-visual reveal">
+    <div class="about-visual-inner">
+      <svg viewBox="0 0 200 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Decorative botanical -->
+        <line x1="100" y1="255" x2="100" y2="30" stroke="#9E8B6A" stroke-width="2" stroke-linecap="round"/>
+        <line x1="100" y1="190" x2="55" y2="148" stroke="#9E8B6A" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="100" y1="155" x2="152" y2="110" stroke="#9E8B6A" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="100" y1="220" x2="48" y2="195" stroke="#9E8B6A" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="100" y1="130" x2="60" y2="100" stroke="#9E8B6A" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="100" y1="100" x2="145" y2="72" stroke="#9E8B6A" stroke-width="1.5" stroke-linecap="round"/>
+        <ellipse cx="42" cy="140" rx="24" ry="8" transform="rotate(-38 42 140)" fill="#7A8C5E" opacity="0.65"/>
+        <ellipse cx="158" cy="102" rx="24" ry="8" transform="rotate(28 158 102)" fill="#6B7D50" opacity="0.7"/>
+        <ellipse cx="36" cy="190" rx="22" ry="7" transform="rotate(-32 36 190)" fill="#8A9C6A" opacity="0.6"/>
+        <ellipse cx="48" cy="92" rx="20" ry="7" transform="rotate(-28 48 92)" fill="#7A8C5E" opacity="0.6"/>
+        <ellipse cx="152" cy="64" rx="20" ry="7" transform="rotate(22 152 64)" fill="#8A9C6A" opacity="0.65"/>
+        <ellipse cx="100" cy="52" rx="18" ry="6" transform="rotate(5 100 52)" fill="#6B7D50" opacity="0.6"/>
+        <!-- Olives -->
+        <ellipse cx="88" cy="168" rx="10" ry="13" fill="#4A5E38" opacity="0.8"/>
+        <ellipse cx="112" cy="158" rx="9" ry="12" fill="#3D5030" opacity="0.85"/>
+        <ellipse cx="92" cy="140" rx="8" ry="11" fill="#556642" opacity="0.75"/>
+      </svg>
+    </div>
+    <div class="about-tag">SprigAndSol</div>
+  </div>
+
+  <div class="reveal">
+    <p class="section-eyebrow">About the Shop</p>
+    <h2 class="section-title">Slow work.<br>Real ingredients.</h2>
+    <div class="divider"></div>
+    <p class="about-body">SprigAndSol is a digital art shop built around one idea — that the things we cook with are worth looking at. Not styled. Not arranged. Just painted, quietly and carefully, the way a botanist might study them.</p>
+    <p class="about-body">Each print begins as a detailed watercolor study. The brushwork is intentionally imperfect — visible strokes, translucent layers, paper grain showing through — because that's what makes it feel made by a person rather than generated by a machine.</p>
+
+    <div class="about-detail">
+      <div class="about-detail-item">
+        <span class="detail-num">01</span>
+        <div class="detail-text">
+          <strong>Instant Digital Download</strong>
+          Purchase and download immediately. No waiting, no shipping. Print at home or at any local print shop.
+        </div>
+      </div>
+      <div class="about-detail-item">
+        <span class="detail-num">02</span>
+        <div class="detail-text">
+          <strong>Six Sizes Per Print</strong>
+          Every download includes 5×7, 8×10, 11×14, 16×20, A4 and A3 — so your print fits any frame you already own.
+        </div>
+      </div>
+      <div class="about-detail-item">
+        <span class="detail-num">03</span>
+        <div class="detail-text">
+          <strong>Growing Collection</strong>
+          Spanish Pantry is live now. French Provençal, Italian Cucina and Japanese Kitchen are in production — follow the shop to hear first.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-section">
+  <h2 class="cta-title reveal">Your kitchen wall is waiting for <em>something real.</em></h2>
+  <div class="cta-right reveal">
+    <p class="cta-body">The Spanish Pantry Collection is live now on Etsy. Ten sets of three prints. Instant download. Yours for the wall above your counter.</p>
+    <a href="https://www.etsy.com/shop/SprigAndSol" target="_blank" class="btn-cream">Shop SprigAndSol on Etsy</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-logo">Sprig<span>&</span>Sol</div>
+    <div class="footer-tagline" style="margin-top:0.35rem;">Botanical Wall Art · Digital Prints</div>
+  </div>
+  <ul class="footer-links">
+    <li><a href="#collection">Collection</a></li>
+    <li><a href="#coming">Coming Soon</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="https://www.etsy.com/shop/SprigAndSol" target="_blank">Etsy Shop</a></li>
+  </ul>
+  <p class="footer-copy">© 2026 SprigAndSol. All rights reserved.</p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Hamburger
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+    document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+  });
+  document.querySelectorAll('.mobile-link, .mobile-etsy').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+</script>
+</body>
+</html>
